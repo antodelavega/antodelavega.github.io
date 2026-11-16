@@ -79,7 +79,7 @@
             max-height: 75px;
             width: auto;
             background: transparent;
-            mix-blend-mode: multiply;
+            filter: drop-shadow(0 1px 3px rgba(0, 0, 0, 0.18));
         }
         
         .header-content {
@@ -282,7 +282,7 @@
 <div class="container">
     <header>
         <div class="header-content">
-            <img src="https://lh3.googleusercontent.com/d/17-9iW7CsxjKOZtDXSNM2tBjQQ-x9afGs" alt="Logo Afocal" class="header-logo">
+            <img id="logo-afocal" crossorigin="anonymous" src="https://lh3.googleusercontent.com/d/17-9iW7CsxjKOZtDXSNM2tBjQQ-x9afGs" alt="Logo Afocal" class="header-logo">
             <h1>Calendrier de l'Avent - RSO* Afocal</h1>
             <h3>*Responsablité Sociétale des Organisations</h3>
             <p>En attendant Noël, 18 pauses avec de bons réflexes pour prendre soin de soi et de l’humanité</p>
@@ -462,6 +462,40 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     };
+        // Suppression automatique du fond blanc du logo
+    var logoImg = document.getElementById('afocal-logo');
+    if (logoImg) {
+        var makeTransparent = function() {
+            try {
+                var canvas = document.createElement('canvas');
+                var ctx = canvas.getContext('2d');
+                canvas.width = logoImg.naturalWidth;
+                canvas.height = logoImg.naturalHeight;
+                ctx.drawImage(logoImg, 0, 0);
+    
+                var imgData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                var data = imgData.data;
+    
+                // Rend transparent tout pixel proche du blanc (R, G et B > 235)
+                for (var i = 0; i < data.length; i += 4) {
+                    if (data[i] > 235 && data[i + 1] > 235 && data[i + 2] > 235) {
+                        data[i + 3] = 0; // Canal alpha à 0 (transparent)
+                    }
+                }
+    
+                ctx.putImageData(imgData, 0, 0);
+                logoImg.src = canvas.toDataURL('image/png');
+            } catch (e) {
+                console.warn("Impossible de traiter la transparence (restriction CORS sur le serveur d'image).", e);
+            }
+        };
+    
+        if (logoImg.complete) {
+            makeTransparent();
+        } else {
+            logoImg.onload = makeTransparent;
+        }
+    }
 });
 </script>
 
