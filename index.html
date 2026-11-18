@@ -330,7 +330,7 @@ document.addEventListener('DOMContentLoaded', function() {
         { day: 12, dateStr: currentYear + "-12-16", displayDate: "Mercredi 16 Décembre", title: "Parler quand ça ne va pas", tag: "kit", tagLabel: "Kit Bien-être 11/11", message: "💬 Exprimer ses difficultés permet de prendre du recul, c'est la première marche pour aller mieux.", action: "Je prends 2 minutes pour découvrir les lignes d'écoute et dispositifs d'accompagnement à ma disposition.", file: "Ressources Afocal - Parler", embedUrl : "https://drive.google.com/file/d/17XnedLPUORneSB65tPS6ihL_GsNjPABW/preview" },
         { day: 13, dateStr: currentYear + "-12-17", displayDate: "Jeudi 17 Décembre", title: "Se centrer sur le positif", tag: "kit", tagLabel: "Kit Bien-être 3/11", message: "🌈 Face aux ondes négatives parfois envahissantes, mobilisons nous pour créer un espace et un environnement plus positif.", action: "Et si je prenais un instant pour noter 3 réussites ou moments positifs de ma semaine passée ?", file: "Ressources Afocal - Positif", embedUrl : "https://drive.google.com/file/d/1IrWlzGh7i4pLI596ZShxE-ayN5ZPM2eQ/preview" },
         { day: 14, dateStr: currentYear + "-12-18", displayDate: "Vendredi 18 Décembre", title: "Réduire les substances", tag: "kit", tagLabel: "Kit Bien-être 9/11", message: "🍷 Alcool, sucre, tabac... faire le point sur nos consommations de stimulants et leurs impacts à long terme.", action: "Et si je remplaçais aujourd'hui une boisson stimulante par une verveine ou une eau infusée ?", file: "Ressources Afocal - Addictions", embedUrl : "https://drive.google.com/file/d/1if6OonHiSjGFqAdrGkpCFylTpAl6wzMh/preview" },
-        { day: 15, dateStr: currentYear + "-12-21", displayDate: "Lundi 21 Décembre", title: "Profiter des fêtes durablement", tag: "outil", tagLabel: "Outil Afocal", message: "🎅 En cette période festive, comment gâter chacun tout en évitant le gaspillage ? Recyclage, réemploi, seconde main, retrouvez des repères durables de consommation.", action: "Parcourir le site GEEV pour essayer de trouver des dons d'objets dont vous auriez besoin. Découvrez également des solutions pour emballer vos cadeaux de noël sans papier cadeau.", file: "Ressources à découvrir." fileUrl: [{ label: "Site de GEEV", url: "https://www.geev.com/fr/recherche/objets" },{ label: "Emballages cadeaux", url: "https://www.marieclaire.fr/idees/9-idees-pour-emballer-un-cadeau-sans-papier-cadeau,1281143.asp" } },
+        { day: 15, dateStr: currentYear + "-12-21", displayDate: "Lundi 21 Décembre", title: "Profiter des fêtes durablement", tag: "outil", tagLabel: "Outil Afocal", message: "🎅 En cette période festive, comment gâter chacun tout en évitant le gaspillage ? Recyclage, réemploi, seconde main, retrouvez des repères durables de consommation.", action: "Parcourir le site GEEV pour essayer de trouver des dons d'objets dont vous auriez besoin. Découvrez également des solutions pour emballer vos cadeaux de noël sans papier cadeau.", file: "Ressources à découvrir.", fileUrl: [{ label: "Site de GEEV", url: "https://www.geev.com/fr/recherche/objets" },{ label: "Emballages cadeaux", url: "https://www.marieclaire.fr/idees/9-idees-pour-emballer-un-cadeau-sans-papier-cadeau,1281143.asp" }] },
         { day: 16, dateStr: currentYear + "-12-22", displayDate: "Mardi 22 Décembre", title: "Pratiquer un loisir", tag: "kit", tagLabel: "Kit Bien-être 10/11", message: "🎸 Choisir de pratiquer une activité sportive, culturelle, créative au delà de son quotidien professionnel permet de trouver un bon équilibre pour sa santé mentale", action: "Et si je partageais avec un collègue une passion personnelle ?", file: "Ressources Afocal - Loisirs", embedUrl : "https://drive.google.com/file/d/1rSHntWe9aBvdUZuMfHatRtEYzf14NE9-/preview" },
         { day: 17, dateStr: currentYear + "-12-23", displayDate: "Mercredi 23 Décembre", title: "Inclusion & Déconnexion", tag: "rso", tagLabel: "Action RSO", message: "🤝 TBD...", action: ".", file: "." },
         { day: 18, dateStr: currentYear + "-12-24", displayDate: "Jeudi 24 Décembre", title: "Checklist Congés & Bilan", tag: "rso", tagLabel: "Action RSO", message: "🎄 TBD...", action: ".", file: "." }
@@ -416,6 +416,15 @@ document.addEventListener('DOMContentLoaded', function() {
                }
            } else {
                fileSpan.textContent = data.file;
+
+           if (data.embedUrl) {
+                var formattedEmbedUrl = data.embedUrl.replace(/\/edit.*$/, '/preview').replace(/\/view.*$/, '/preview');
+                iframeEmbed.src = formattedEmbedUrl;
+                iframeEmbed.style.display = 'block';
+           } else {
+                iframeEmbed.src = 'about:blank';
+                iframeEmbed.style.display = 'none';
+            }
            }
 
             channelContainer.style.display = 'block';
