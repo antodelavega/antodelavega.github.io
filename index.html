@@ -74,8 +74,8 @@
         
         .header-logo {
             position: absolute;
-            top: 2px;
-            right: 2px;
+            top: 10px;
+            right: 10px;
             max-height: 75px;
             width: auto;
             background: transparent;
@@ -282,9 +282,12 @@
 <div class="container">
     <header>
         <div class="header-content">
-            <img id="logo-afocal" src="https://lh3.googleusercontent.com/d/1A52hvzmZ2P5KWZIeIjF_F4moUmXt-oEj" alt="Logo Afocal" class="header-logo">
+            <img id="logo-afocal"
+                 src="logo-afocal.png"
+                 onerror="this.onerror=null; this.src='https://drive.google.com/thumbnail?id=1A52hvzmZ2P5KWZIeIjF_F4moUmXt-oEj&sz=w400';"
+                 alt="Logo Afocal" class="header-logo">
             <h1>Calendrier de l'Avent - RSO* Afocal</h1>
-            <h3>*Responsablité Sociétale des Organisations</h3>
+            <h3>*Responsabilité Sociétale des Organisations</h3>
             <p>En attendant Noël, 18 pauses avec de bons réflexes pour prendre soin de soi et de l’humanité</p>
         </div>
     </header>
@@ -306,7 +309,7 @@
             📄 <b>Document(s) :</b> <span id="modal-file"></span>
             
             <!-- Zone d'insertion du document (masquée par défaut) -->
-            <iframe id="modal-embed" src="" style="display:none; width: 100%; height: 350px; margin-top: 15px; border: 1px solid #ccc; border-radius: 8px;"></iframe>
+            <iframe id="modal-embed" title="Aperçu du document" src="" style="display:none; width: 100%; height: 350px; margin-top: 15px; border: 1px solid #ccc; border-radius: 8px;"></iframe>
         </div>
     </div>
 </div>
@@ -316,28 +319,25 @@ document.addEventListener('DOMContentLoaded', function() {
     var currentYear = new Date().getFullYear();
 
     var days = [
-        { day: 1, dateStr: currentYear + "-12-01", displayDate: "Mardi 1er Décembre", title: "Lancement RSO", tag: "rso", tagLabel: "Action RSO", message: "🎄 Noël approche ! On vous propose un mois de décembre ancré sur notre démarche RSO (Responsabilité Sociale des Organisations) : Prendre soin de l'humanité. Ce calendrier a pour vocation de vous aider à prendre soin de vous, des autres et de la planète :)", action: "Connais-tu bien tous tes collègues ? Va faire un tour sur LUCCA et retrouve le “LUCCA faces” pour identifier qui est qui. Pour te féliciter de tes réussites, définis une intention bienveillante à réaliser pour la suite de ta journée de travail qui soit tourner vers toi.", file: "Logiciel LUCCA, dans l’interface à l’ouverture" },
+        { day: 1, dateStr: currentYear + "-12-01", displayDate: "Mardi 1er Décembre", title: "Lancement RSO", tag: "rso", tagLabel: "Action RSO", message: "🎄 Noël approche ! On vous propose un mois de décembre ancré sur notre démarche RSO (Responsabilité Sociale des Organisations) : Prendre soin de l'humanité. Ce calendrier a pour vocation de vous aider à prendre soin de vous, des autres et de la planète :)", action: "Connais-tu bien tous tes collègues ? Va faire un tour sur LUCCA et retrouve le “LUCCA faces” pour identifier qui est qui. Pour te féliciter de tes réussites, définis une intention bienveillante à réaliser pour la suite de ta journée de travail qui soit tournée vers toi.", file: "Logiciel LUCCA, dans l’interface à l’ouverture" },
         { day: 2, dateStr: currentYear + "-12-02", displayDate: "Mercredi 2 Décembre", title: "Reconnaître ses émotions", tag: "kit", tagLabel: "Kit Bien-être 1/11", message: "♥️ Savoir nommer une émotion est la première étape pour l'accepter et savoir la gérer.", action: "Et si je parcourais les tribus pour mettre un mot sur mon émotion du moment ?", file: "Ressources Afocal - émotion", embedUrl : "https://drive.google.com/file/d/1hpHR741B1hdbw4ERFFF4bIKTgnGfs0vh/preview" },
-        { day: 3, dateStr: currentYear + "-12-03", displayDate: "Jeudi 3 Décembre", title: "La santé mentale", tag: "outil", tagLabel: "Outil Afocal", message: "🧠 L'attention porté à notre santé mentale est celle des autres est cruciale, d'autant plus dans le développement des jeunes. Et si on faisait le point de notre connaissance sur le sujet ?", action: "« La santé mentale, tu connais ? » : Je parcours l'outil de l'UNOSEL, conçu pour les animateurs et directeurs de séjour.", file: "Ressource UNOSEL", fileUrl : "https://lasantementaletuconnais.org/" },
+        { day: 3, dateStr: currentYear + "-12-03", displayDate: "Jeudi 3 Décembre", title: "La santé mentale", tag: "outil", tagLabel: "Outil Afocal", message: "🧠 L'attention portée à notre santé mentale et à celle des autres est cruciale, d'autant plus dans le développement des jeunes. Et si on faisait le point de notre connaissance sur le sujet ?", action: "« La santé mentale, tu connais ? » : Je parcours l'outil de l'UNOSEL, conçu pour les animateurs et directeurs de séjour.", file: "Ressource UNOSEL", fileUrl : "https://lasantementaletuconnais.org/" },
         { day: 4, dateStr: currentYear + "-12-04", displayDate: "Vendredi 4 Décembre", title: "Se relaxer", tag: "kit", tagLabel: "Kit Bien-être 2/11", message: "😮‍💨 Les exercices de relaxation permettent de se détendre aussi bien sur le plan physique qu'émotionnel, tout au long de la journée.", action: "Et si je m'accordais 3 minutes de relaxation dans la journée ?", file: "Ressources Afocal - Relaxation", embedUrl : "https://drive.google.com/file/d/1nQzlywK5e-rg34tdcRGlfcEiV-a6L2d0/preview" },
         { day: 5, dateStr: currentYear + "-12-07", displayDate: "Lundi 7 Décembre", title: "Être là pour les autres", tag: "kit", tagLabel: "Kit Bien-être 8/11", message: "🎁 Apporter de l'aide à quelqu'un, valoriser le travail d'un collègue ou complimenter un autre fait autant de bien à celui qui donne qu'à celui qui reçoit.", action: "Un sourire, une discussion avec un collègue ou un café offert : et si je me tournais vers les autres aujourd'hui ?", file: "Ressources Afocal - Entraide", embedUrl : "https://drive.google.com/file/d/1RPzKGFx7v3U19fakP1X7QqXhoy3ef2aa/preview" },
         { day: 6, dateStr: currentYear + "-12-08", displayDate: "Mardi 8 Décembre", title: "Cartes Forces & CPS", tag: "outil", tagLabel: "Outil Afocal", message: "🃏 Une compétence est acquise à travers l'expérience et le travail. Quant à elle, une force est une qualité naturelle qui fait partie de notre personnalité.", action: "Et si je parcourais les cartes forces afin de repérer les 5 qui me ressemblent le plus ?", file: "CRIPS & Afocal - Cartes Forces", embedUrl :"https://drive.google.com/file/d/1by7-wLpzmFzd558HB1K-Iz0UwxUucK0w/preview" },
         { day: 7, dateStr: currentYear + "-12-09", displayDate: "Mercredi 9 Décembre", title: "S'aérer", tag: "kit", tagLabel: "Kit Bien-être 4/11", message: "🌤️ Avez-vous pris un temps pour vous aérer aujourd'hui ?", action: "Et si je sortais prendre l'air pendant 15 minutes sur ma pause déjeuner aujourd'hui ? L'occasion de lever les yeux et d'observer l'environnement avec mes 5 sens.", file: "Ressources Afocal - S'aérer", embedUrl : "https://drive.google.com/file/d/1LE18eQeQMkmnYr7v9QBLTzdU7fzOqC_0/preview" },
-        { day: 8, dateStr: currentYear + "-12-10", displayDate: "Jeudi 10 Décembre", title: "Manger mieux", tag: "kit", tagLabel: "Kit Bien-être 5/11", message: "🥗 L'alimentation est un pilier de nos vies, au coeur de tout le reste. Retrouvez des repères simples et durables pour mieux s'alimenter.", action: "Et si je pensais à m'hydrater réguliérement aujourd'hui ? Et si j'y faisais penser à un(e) collègue ?", file: "Ressources Afocal - Manger", embedUrl : "https://drive.google.com/file/d/196X0wgehfyvEGBU5Q9UFEuezMhtAegvR/preview" },
+        { day: 8, dateStr: currentYear + "-12-10", displayDate: "Jeudi 10 Décembre", title: "Manger mieux", tag: "kit", tagLabel: "Kit Bien-être 5/11", message: "🥗 L'alimentation est un pilier de nos vies, au coeur de tout le reste. Retrouvez des repères simples et durables pour mieux s'alimenter.", action: "Et si je pensais à m'hydrater régulièrement aujourd'hui ? Et si je faisais penser un(e) collègue à s'hydrater aussi ?", file: "Ressources Afocal - Manger", embedUrl : "https://drive.google.com/file/d/196X0wgehfyvEGBU5Q9UFEuezMhtAegvR/preview" },
         { day: 9, dateStr: currentYear + "-12-11", displayDate: "Vendredi 11 Décembre", title: "Bien dormir", tag: "kit", tagLabel: "Kit Bien-être 6/11", message: "😴 Bien dormir, c'est se mettre dans de meilleures dispositions énergétiques, physiques et émotionnelles pour la journée à vivre.", action: "Et si je limitais mon temps d'écran sur les pauses et en fin de journée ? Et si j'éteignais tous mes écrans 30 minutes avant de dormir pour m'offrir une vraie nuit reposante ?", file: "Ressources Afocal - Sommeil", embedUrl : "https://drive.google.com/file/d/1TJxLb_WIjTxY63tVOqlpzkF_dGQPXnLw/preview" },
         { day: 10, dateStr: currentYear + "-12-14", displayDate: "Lundi 14 Décembre", title: "Origami & Créativité", tag: "outil", tagLabel: "Outil Afocal", message: "📄 Les activités manuelles stimulent notre concentration et favorisent la relaxation. Utilisez un outil ludique pour ouvrir la discussion sur la santé mentale.", action: "Et si je prenais 5 minutes pour construire l'origami de la santé mentale et pour le tester avec un(e) collègue ?", file: "Origami - Santé mentale", embedUrl :"https://drive.google.com/file/d/1kPMRT8pl6xjj2Lk-b8yHP4Aj2EEih69U/preview" },
-        { day: 11, dateStr: currentYear + "-12-15", displayDate: "Mardi 15 Décembre", title: "Bouger plus", tag: "kit", tagLabel: "Kit Bien-être 7/11", message: "🚶 Bouger au quotidien est extrêmement bénefique tant pour votre santé physique que mentale.", action: "Et si je mettais une alarme toutes les heures pour me lever et m'étirer ?", file: "Ressources Afocal - Bouger", embedUrl : "https://drive.google.com/file/d/1kPh2v8n36IRMPqcuXFcOZ0n7dOsxITN-/preview" },
+        { day: 11, dateStr: currentYear + "-12-15", displayDate: "Mardi 15 Décembre", title: "Bouger plus", tag: "kit", tagLabel: "Kit Bien-être 7/11", message: "🚶 Bouger au quotidien est extrêmement bénéfique tant pour votre santé physique que mentale.", action: "Et si je mettais une alarme toutes les heures pour me lever et m'étirer ?", file: "Ressources Afocal - Bouger", embedUrl : "https://drive.google.com/file/d/1kPh2v8n36IRMPqcuXFcOZ0n7dOsxITN-/preview" },
         { day: 12, dateStr: currentYear + "-12-16", displayDate: "Mercredi 16 Décembre", title: "Parler quand ça ne va pas", tag: "kit", tagLabel: "Kit Bien-être 11/11", message: "💬 Exprimer ses difficultés permet de prendre du recul, c'est la première marche pour aller mieux.", action: "Je prends 2 minutes pour découvrir les lignes d'écoute et dispositifs d'accompagnement à ma disposition.", file: "Ressources Afocal - Parler", embedUrl : "https://drive.google.com/file/d/1mmUGHLHBE5yPXAtGaD38ArfNR2Ptcd7T/preview" },
         { day: 13, dateStr: currentYear + "-12-17", displayDate: "Jeudi 17 Décembre", title: "Se centrer sur le positif", tag: "kit", tagLabel: "Kit Bien-être 3/11", message: "🌈 Face aux ondes négatives parfois envahissantes, mobilisons nous pour créer un espace et un environnement plus positif.", action: "Et si je prenais un instant pour noter 3 réussites ou moments positifs de ma semaine passée ?", file: "Ressources Afocal - Positif", embedUrl : "https://drive.google.com/file/d/1DaI7z5Nn7bxt8NptNacC8Y5jOI_B3uwd/preview" },
-        { day: 14, dateStr: currentYear + "-12-18", displayDate: "Vendredi 18 Décembre", title: "Réduire les substances", tag: "kit", tagLabel: "Kit Bien-être 9/11", message: "🍷 Alcool, sucre, tabac... faisons le point sereinement sur nos consommations de stimulants et leurs impacts à long terme.", action: "Et si je remplaçais aujourd'hui une boisson stimulante par une verveine ou une eau infusée ?", file: "Ressources Afocal - Addictions", embedUrl : "https://drive.google.com/file/d/1JsBsOjI5vHvIJgibna2tO72JSi-R1tuS/preview" },
+        { day: 14, dateStr: currentYear + "-12-18", displayDate: "Vendredi 18 Décembre", title: "Réduire les substances", tag: "kit", tagLabel: "Kit Bien-être 9/11", message: "🍷 Alcool, sucre, tabac... faisons le point sereinement sur nos consommations de stimulants et leurs impacts à long terme.", action: "Et si je remplaçais aujourd'hui une boisson stimulante par une verveine ou une eau infusée ?", file: "Ressources Afocal - Addictions", embedUrl : "https://drive.google.com/file/d/1JsBsOjI5vHvIJgibna2tT72JSi-R1tuS/preview" },
         { day: 15, dateStr: currentYear + "-12-21", displayDate: "Lundi 21 Décembre", title: "Profiter des fêtes durablement", tag: "outil", tagLabel: "Outil Afocal", message: "🎅 En cette période festive, comment gâter chacun tout en évitant le gaspillage ? Recyclage, réemploi, seconde main, retrouvez des repères durables de consommation.", action: "Et si je cherchais un objet que je pensais acheter sur une plateforme de dons ? Et si j'emballais mes cadeaux de noël sans papier cadeau cette année ?", file: "Ressources à découvrir.", fileUrl: [{ label: "Site de GEEV", url: "https://www.geev.com/fr/recherche/objets" },{ label: "Emballages cadeaux", url: "https://www.marieclaire.fr/idees/9-idees-pour-emballer-un-cadeau-sans-papier-cadeau,1281143.asp" }] },
         { day: 16, dateStr: currentYear + "-12-22", displayDate: "Mardi 22 Décembre", title: "Pratiquer un loisir", tag: "kit", tagLabel: "Kit Bien-être 10/11", message: "🎸 Choisir de pratiquer une activité sportive, culturelle, créative au delà de son quotidien professionnel permet de trouver un bon équilibre pour sa santé mentale", action: "Et si je partageais avec un collègue une passion personnelle ?", file: "Ressources Afocal - Loisirs", embedUrl : "https://drive.google.com/file/d/1Ch4P7mxsSRps4DTb-QyxKVXQAHUzP4Pf/preview" },
-        { day: 17, dateStr: currentYear + "-12-23", displayDate: "Mercredi 23 Décembre", title: "Prendre soin de soi", tag: "rso", tagLabel: "Action RSO", message: "🤝 Ce calendrier s'approche de sa fin, mais les outils eux ne disparaissent pas ! Avec la mutuelle AESIO viennent des avantages pour vous accompagner afin de prendre soin de vous. Avez-vous penser à prendre un vrai temps de pause aujourd'hui ?", action: "Et si je parcourais les coups de pouces apportés par AESIO et les activités à faire pendant une pause ? ", file: "Mon espace adhérent AESIO",  fileUrl: [{label: "Mon espace adhérent AESIO", url: "https://adherent.aesio.fr/" }, {label: "Abécédaire des activités pour faire une pause par SCHOLAVIE", url:"https://drive.google.com/file/d/1XW9uCWJ_ybJEToBxcMpw1C3tqmCHPH9F/view?usp=sharing" }] },
-        { day: 18, dateStr: currentYear + "-12-24", displayDate: "Jeudi 24 Décembre", title: "Checklist Congés & Bilan", tag: "rso", tagLabel: "Action RSO", message: "🎄 Joyeux réveillon ! Ce calendrier RSO touche à sa fin pour laisser place au doux parfum des fêtes. Merci de votre intérêt pour ce projet collectif et bonnes vacances à tous, riche de la rencontre avec l’autre, vos proches, vos amis, vos voisins… ", action: "Je prends 5 minutes pour choisir les outils les plus pertinents à utiliser pour prendre soin de l'humanité en cette période de fête.", file: "Retrouvez l'ensemble des ressources utilisées, ainsi que leurs inspirations !", fileUrl: [{label: "L'inspiration des cases bien-être", url : "https://www.santementale-info-service.fr/"}, {label: "L'ensemble des ressources du calendrier", url: "https://drive.google.com/drive/folders/1AQAyRvlh9mv1LAydNY3XxBpZrWVmDPEm"}]  }
+        { day: 17, dateStr: currentYear + "-12-23", displayDate: "Mercredi 23 Décembre", title: "Prendre soin de soi", tag: "rso", tagLabel: "Action RSO", message: "🤝 Ce calendrier s'approche de sa fin, mais les outils eux ne disparaissent pas ! Avec la mutuelle AESIO viennent des avantages pour vous accompagner afin de prendre soin de vous. Avez-vous pensé à prendre un vrai temps de pause aujourd'hui ?", action: "Et si je parcourais les coups de pouces apportés par AESIO et les activités à faire pendant une pause ? ", file: "Mon espace adhérent AESIO",  fileUrl: [{label: "Mon espace adhérent AESIO", url: "https://adherent.aesio.fr/" }, {label: "Abécédaire des activités pour faire une pause par SCHOLAVIE", url:"https://drive.google.com/file/d/1XW9uCWJ_ybJEToBxcMpw1C3tqmCHPH9F/view?usp=sharing" }] },
+        { day: 18, dateStr: currentYear + "-12-24", displayDate: "Jeudi 24 Décembre", title: "Checklist Congés & Bilan", tag: "rso", tagLabel: "Action RSO", message: "🎄 Joyeux réveillon ! Ce calendrier RSO touche à sa fin pour laisser place au doux parfum des fêtes. Merci de votre intérêt pour ce projet collectif et bonnes vacances à tous, riches de la rencontre avec l’autre, vos proches, vos amis, vos voisins… ", action: "Je prends 5 minutes pour choisir les outils les plus pertinents à utiliser pour prendre soin de l'humanité en cette période de fête.", file: "Retrouvez l'ensemble des ressources utilisées, ainsi que leurs inspirations !", fileUrl: [{label: "L'inspiration des cases bien-être", url : "https://www.santementale-info-service.fr/"}, {label: "L'ensemble des ressources du calendrier", url: "https://drive.google.com/drive/folders/1AQAyRvlh9mv1LAydNY3XxBpZrWVmDPEm"}]  }
     ];
-
-    var today = new Date();
-    today.setHours(0, 0, 0, 0);
 
     var urlParams = new URLSearchParams(window.location.search);
     var isTestMode = urlParams.get('test') === 'true';
@@ -346,10 +346,10 @@ document.addEventListener('DOMContentLoaded', function() {
 
     days.forEach(function(data) {
         var parts = data.dateStr.split('-');
-        var targetDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10));
-        targetDate.setHours(0, 0, 0, 0);
+        // Ouverture de la case à 9h00, comme annoncé dans la modale ("Intranet - 9h")
+        var targetDate = new Date(parseInt(parts[0], 10), parseInt(parts[1], 10) - 1, parseInt(parts[2], 10), 9, 0, 0);
 
-        var isUnlocked = isTestMode || (today >= targetDate);
+        var isUnlocked = isTestMode || (new Date() >= targetDate);
 
         var card = document.createElement('div');
         card.className = 'card ' + (isUnlocked ? 'unlocked' : 'locked');
@@ -416,7 +416,10 @@ document.addEventListener('DOMContentLoaded', function() {
                }
            } else {
                fileSpan.textContent = data.file;
+           }
 
+           // Gestion de l'aperçu intégré : exécutée pour TOUS les jours,
+           // même ceux qui ont un fileUrl (sinon l'iframe du jour précédent restait affichée)
            if (data.embedUrl) {
                 var formattedEmbedUrl = data.embedUrl.replace(/\/edit.*$/, '/preview').replace(/\/view.*$/, '/preview');
                 iframeEmbed.src = formattedEmbedUrl;
@@ -425,7 +428,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 iframeEmbed.src = 'about:blank';
                 iframeEmbed.style.display = 'none';
             }
-           }
 
             channelContainer.style.display = 'block';
             actionContainer.style.display = 'block';
@@ -470,7 +472,13 @@ document.addEventListener('DOMContentLoaded', function() {
             closeModal();
         }
     };
-        // Suppression automatique du fond blanc du logo
+
+    // Fermeture au clavier avec Échap
+    document.addEventListener('keydown', function(event) {
+        if (event.key === 'Escape') {
+            closeModal();
+        }
+    });
 });
 </script>
 
